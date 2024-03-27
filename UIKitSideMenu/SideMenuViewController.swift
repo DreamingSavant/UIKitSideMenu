@@ -27,6 +27,7 @@ class SideMenuViewController: UIViewController {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -37,10 +38,13 @@ class SideMenuViewController: UIViewController {
         view.backgroundColor = .purple
         view.addSubview(closeButton)
         NSLayoutConstraint.activate([
-            closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            closeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+//            closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            closeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         // Do any additional setup after loading the view.
+        setupTableView()
     }
     
     private func setupTopAreaOfMenu() {
@@ -51,8 +55,15 @@ class SideMenuViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.backgroundColor = .blue
         view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: closeButton.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     @objc func close(_ sender: UIButton) {

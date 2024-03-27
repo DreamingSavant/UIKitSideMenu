@@ -68,16 +68,18 @@ class ViewController: UIViewController, CloseButton {
     
     private func hideSideMenu() {
         guard let sideMenuVC = sideMenuViewController else { return }
-        
-        UIView.animate(withDuration: 0.3) {
-            sideMenuVC.view.frame = CGRect(x: -self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        } completion: { _ in
-            sideMenuVC.willMove(toParent: nil)
-            sideMenuVC.view.removeFromSuperview()
-            sideMenuVC.removeFromParent()
-            self.sideMenuViewController = nil
-            self.isSideMenuPresented = false
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3) {
+                sideMenuVC.view.frame = CGRect(x: -self.view.frame.width, y: 0, width: self.view.frame.width - 100, height: self.view.frame.height)
+            } completion: { _ in
+                sideMenuVC.willMove(toParent: nil)
+                sideMenuVC.view.removeFromSuperview()
+                sideMenuVC.removeFromParent()
+                self.sideMenuViewController = nil
+                self.isSideMenuPresented = false
+            }
         }
+       
     }
 
 }
