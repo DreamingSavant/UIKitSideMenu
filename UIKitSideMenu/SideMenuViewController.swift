@@ -41,8 +41,6 @@ class SideMenuViewController: UIViewController {
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-//            closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            closeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         // Do any additional setup after loading the view.
         setupTableView()
