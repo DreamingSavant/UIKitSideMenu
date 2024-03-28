@@ -37,6 +37,7 @@ class SideMenuViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .purple
         view.addSubview(closeButton)
+        setupSwipeGesture()
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
@@ -45,6 +46,11 @@ class SideMenuViewController: UIViewController {
         ])
         // Do any additional setup after loading the view.
         setupTableView()
+    }
+    private func setupSwipeGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(close(_:)))
+        swipeGesture.direction = .left
+        view.addGestureRecognizer(swipeGesture)
     }
     
     private func setupTopAreaOfMenu() {
